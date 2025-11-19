@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClaimClarity | Transparent Claim Status</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">ClaimClarity</p>
+      <h1>Know exactly where your insurance claim stands.</h1>
+      <p class="lede">Search with your claim number and last name to see a clear, human-friendly status update.</p>
+      <div class="pill-row">
+        <span class="pill">Real-time journey</span>
+        <span class="pill">Plain-language steps</span>
+        <span class="pill">Document checklist</span>
+      </div>
+    </div>
+    <form id="lookup-form" class="card form-card">
+      <h2>Find your claim</h2>
+      <label for="claimNumber">Claim number</label>
+      <input id="claimNumber" name="claimNumber" required placeholder="e.g. CL-1024" />
+
+      <label for="lastName">Last name</label>
+      <input id="lastName" name="lastName" required placeholder="e.g. Johnson" />
+
+      <button type="submit">Show my claim</button>
+      <p id="lookup-message" class="message"></p>
+    </form>
+  </header>
+
+  <main id="claim-area" class="claim-area hidden">
+    <section class="card summary">
+      <div class="summary__top">
+        <div>
+          <p class="eyebrow">Claim summary</p>
+          <h2 id="claim-type"></h2>
+          <div class="meta-row">
+            <span id="claim-number" class="chip"></span>
+            <span id="incident-date" class="chip muted"></span>
+            <span id="claim-channel" class="chip soft">Self-service portal</span>
+          </div>
+        </div>
+        <div class="status-display">
+          <div class="badge" id="current-status"></div>
+          <p class="muted" id="status-explainer"></p>
+        </div>
+      </div>
+      <div class="summary__body">
+        <div class="progress-card">
+          <div class="progress-head">
+            <div>
+              <p class="eyebrow">Journey coverage</p>
+              <h3 id="progress-label"></h3>
+            </div>
+            <span id="progress-count" class="chip soft"></span>
+          </div>
+          <div class="progress-track">
+            <span id="progress-fill"></span>
+          </div>
+        </div>
+        <div class="glance-card" id="required-documents"></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Journey</p>
+          <h3>Where your claim is in the process</h3>
+        </div>
+        <p class="muted">We move through the same steps for every claim so you always know what's next.</p>
+      </div>
+      <ol id="timeline" class="journey"></ol>
+    </section>
+
+    <section class="grid">
+      <article class="card focus" id="current-step">
+        <p class="eyebrow">What’s happening right now</p>
+        <h3 id="current-step-title"></h3>
+        <p id="current-step-description" class="muted"></p>
+      </article>
+      <article class="card" id="next-step">
+        <p class="eyebrow">What happens next</p>
+        <h3 id="next-step-title"></h3>
+        <p id="next-step-description" class="muted"></p>
+      </article>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">What we need from you</p>
+          <h3 id="documents-heading"></h3>
+        </div>
+        <p class="muted" id="documents-subtext"></p>
+      </div>
+      <ul id="documents-list" class="document-list"></ul>
+    </section>
+
+    <section class="card">
+      <p class="eyebrow">Have a question?</p>
+      <h3>Send us a quick note about this claim</h3>
+      <form id="question-form" class="question-form">
+        <label for="question">Ask a question about this claim</label>
+        <textarea id="question" name="question" rows="3" placeholder="Type your question here" required></textarea>
+        <button type="submit">Send question</button>
+      </form>
+      <div id="questions-area" class="questions"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
